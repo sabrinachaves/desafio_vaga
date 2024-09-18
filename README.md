@@ -21,7 +21,7 @@ O teste pode ser realizado em quanto tempo quiser, porém, gostariamos que reali
 
 ## Descrição do Teste
 
-Uma empresa recebe diariamente um arquivo TXT com várias conciliações de pagamentos de seus clientes, e a cada transação é gerado um recebimento do pagamento.
+Uma empresa recebe diariamente um arquivo TXT com várias conciliações de pagamentos de seus clientes, e a cada transação é gerado um recibo do pagamento.
 
 Seu objetivo é criar um projeto usando NextJS com Typescript, fazer upload do arquivo TXT enviar para a API em NodeJS/Typescript, armazenar no MongoDB e listar os clientes com suas transações.
 
@@ -32,10 +32,10 @@ Seu objetivo é criar um projeto usando NextJS com Typescript, fazer upload do a
 	 - [ ] um botão de ação que leve até a tela de cliente;
 	 - [ ] um botão de ação para download do recibo;
  3. Na tela de cliente, deve ter os dados do mesmo juntamente com uma tabela paginada das transações, ordenada pela data de transações e:
-	 - [ ] um botão de ação para download do recibo;
+	 - [ ] um botão de ação para download do recibo de cada transação;
  4. Fique a vontade para usar alguma lib que auxilie no layout.
 
-#### A API deve funcionar ter os seguintes endpoints seguindo suas respectitivas regras de negócio:
+#### A API deve ter os seguintes endpoints, seguindo suas respectitivas regras de negócio:
 
  1. Endpoint para receber o arquivo txt das transações, e para cada linha do TXT:
 	 - [ ] Cadastrar o cliente no banco de dados, caso não exista;
@@ -52,6 +52,7 @@ Seu projeto será avaliado de acordo com os seguintes critérios:
 
  1. Sua aplicação atende os requisitos básicos?
  2. Você documentou no README o que deve ser feito para ela rodar?
- 3. Seu conhecimento geral sobre a stack MERN.
+ 3. Como foi arquitetou ambos os projetos.
+ 4. Seu conhecimento geral sobre a stack MERN.
 
 Boa sorte!
