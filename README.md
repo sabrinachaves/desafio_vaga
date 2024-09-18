@@ -26,7 +26,7 @@ Uma empresa recebe diariamente um arquivo TXT com várias conciliações de paga
 Seu objetivo é criar um projeto usando NextJS com Typescript, fazer upload do arquivo TXT enviar para a API em NodeJS/Typescript, armazenar no MongoDB e listar os clientes com suas transações.
 
 #### O portal Web deve conter as seguintes funcionalidades:
- Tela de dashboard, com:
+Tela de dashboard, com:
      - [ ] botão com upload do arquivo TXT;
      - [ ] tabela com a listagem de transações paginada, ordenada pela data da transação e com opção de baixar o recibo do pagamento:
 
