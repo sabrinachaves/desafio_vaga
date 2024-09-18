@@ -26,26 +26,22 @@ Uma empresa recebe diariamente um arquivo TXT com várias conciliações de paga
 Seu objetivo é criar um projeto usando NextJS com Typescript, fazer upload do arquivo TXT enviar para a API em NodeJS/Typescript, armazenar no MongoDB e listar os clientes com suas transações.
 
 #### O portal Web deve conter as seguintes funcionalidades:
+ Tela de dashboard, com:
+     - [ ] botão com upload do arquivo TXT;
+     - [ ] tabela com a listagem de transações paginada, ordenada pela data da transação e com opção de baixar o recibo do pagamento:
 
- 1. Um dashboard com botão de upload para o arquivo TXT;
- 2. No dashboard, deve ter uma tabela com a listagem de transações paginada, ordenada pela data da transação e:
-	 - [ ] um botão de ação que leve até a tela de cliente;
-	 - [ ] um botão de ação para download do recibo;
- 3. Na tela de cliente, deve ter os dados do mesmo juntamente com uma tabela paginada das transações, ordenada pela data de transações e:
-	 - [ ] um botão de ação para download do recibo de cada transação;
- 4. Fique a vontade para usar alguma lib que auxilie no layout.
+Fique a vontade para usar alguma lib que auxilie no layout.
 
 #### A API deve ter os seguintes endpoints, seguindo suas respectitivas regras de negócio:
 
  1. Endpoint para receber o arquivo txt das transações, e para cada linha do TXT:
 	 - [ ] Cadastrar o cliente no banco de dados, caso não exista;
 	 - [ ] Cadastrar a transação relacionada ao cliente;
-	 - [ ] Gerar um arquivo TXT da transação com os dados do pagamento;
+	 - [ ] Gerar um arquivo TXT da transação com os dados do pagamento em uma pasta dentro da API;
 	 - [ ] Não deixar duplicar a transação, caso ela já exista na base.
  2. Endpoint de listagem de transação;
 	 - [ ] Preferencialmente, faça a paginação direto na consulta;
- 3. Endpoint de cliente com suas transações;
-	 - [ ] Preferencialmente, faça a paginação direto na consulta;
+ 3. Endpoint para download do recibo;
 	 
 #### Avaliação
 Seu projeto será avaliado de acordo com os seguintes critérios:
