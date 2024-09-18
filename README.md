@@ -17,7 +17,7 @@ O teste pode ser realizado em quanto tempo quiser, porém, gostariamos que reali
  1. Faça um fork deste projeto para a sua conta no Github (crie uma caso não tenha);
  2. Em seguida, impletemente os projetos tal qual descrito abaixo, em seu clone local;
  3. Use a pasta frontend para o portal, e backend para a API;
- 4. Para a entrega do teste, envie um email para **vitor.ricardo@zeztra.com**.
+ 4. Para a entrega do teste, envie um email com o link do Github para **vitor.ricardo@zeztra.com**.
 
 ## Descrição do Teste
 
