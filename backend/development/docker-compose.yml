@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  database:
+    image: mongo
+    ports:
+      - 27017:27017
+    restart: always
+    entrypoint: ['/usr/bin/mongod', '--bind_ip_all']
+
+  transaction_api:
+    image: node:16-alpine
+    volumes:
+      - ../:/transaction_api
+    working_dir: /transaction_api
+    depends_on:
+      - database
+    ports:
+      - 3001:3001
+      - 9229:9229
+    env_file: ../.env
+    environment:
+      - APPLICATION_NAME=transaction_api
+      - PORT=3001
+      - APP_ENVIRONMENT=development
+      - MONGO_URI=mongodb://172.17.0.1:27017/
+      - MONGO_USER=any
+      - MONGO_PASSWORD=any
+      - MONGO_DB_NAME=transaction
+      - BASE_URL_FRONT=http://localhost:3000
+    command: ash -c "npm i --no-update-notifier && npm run dev"
