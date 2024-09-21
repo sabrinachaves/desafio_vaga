@@ -38,7 +38,7 @@ export default class TransactionRepository implements ITransactionRepository {
 
     const transactions = await this.transactionModel
       .find(where)
-      .sort({ date: 1 })
+      .sort({ date: 1, _id: 1 })
       .skip((page - 1) * pageSize)
       .limit(pageSize)
       .lean();
