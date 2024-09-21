@@ -4,12 +4,14 @@ import TransactionTable from '../components/TransactionTable';
 import Filters from '../components/Filters';
 import axios from 'axios';
 import { StyledDashboardDiv } from '../styles/ComponentsStyles';
+import { CircularProgress, Box } from '@mui/material';
 
 const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [totalTransactions, setTotalTransactions] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const fetchTransactions = async (params = {}) => {
     try {
@@ -35,11 +37,15 @@ const Dashboard: React.FC = () => {
     const formData = new FormData();
     formData.append('file', file);
 
+    setLoading(true);
+
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL_TRANSACTION_API}/v1/transaction`, formData);
       fetchTransactions();
     } catch (error) {
       console.error('Error uploading file:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,14 +64,25 @@ const Dashboard: React.FC = () => {
       <StyledDashboardDiv>
         <Filters onFilter={handleFilter} />
       </StyledDashboardDiv>
-      <TransactionTable
-        transactions={transactions}
-        page={page}
-        rowsPerPage={rowsPerPage}
-        totalTransactions={totalTransactions}
-        onPageChange={setPage}
-        onRowsPerPageChange={setRowsPerPage}
-      />
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="70vh"
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <TransactionTable
+          transactions={transactions}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          totalTransactions={totalTransactions}
+          onPageChange={setPage}
+          onRowsPerPageChange={setRowsPerPage}
+        />
+      )}
     </div>
   );
 };
