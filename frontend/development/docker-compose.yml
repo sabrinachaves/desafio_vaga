@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  transaction_app:
+    image: node:18-alpine
+    volumes:
+      - ../:/transaction_app
+    working_dir: /transaction_app
+    ports:
+      - 3000:3000
+    env_file: ../.env
+    environment:
+      - REACT_APP_BASE_URL_TRANSACTION_API=http://localhost:3001/transaction
+    command: ash -c "npm i --no-update-notifier && npm run start"
