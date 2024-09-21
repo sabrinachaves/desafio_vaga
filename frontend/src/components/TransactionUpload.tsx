@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { StyledButton, StyledUploadDiv } from '../styles/ComponentsStyles';
 
 interface TransactionUploadProps {
   onFileUpload: (file: File) => void;
@@ -24,18 +24,17 @@ const TransactionUpload: React.FC<TransactionUploadProps> = ({ onFileUpload }) =
   };
 
   return (
-    <div>
+    <StyledUploadDiv>
       <input type="file" accept=".txt" onChange={handleFileChange} />
-      <Button 
+      <StyledButton 
         type="button" 
         variant="contained" 
-        color="primary" 
         onClick={handleUploadClick}
         disabled={!selectedFile} 
       >
-        Upload
-      </Button>
-    </div>
+        Enviar
+      </StyledButton>
+    </StyledUploadDiv>
   );
 };
 

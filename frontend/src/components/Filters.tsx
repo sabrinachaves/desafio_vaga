@@ -1,11 +1,11 @@
 import React from 'react';
-import { TextField, Button } from '@mui/material';
+import { StyledButton, StyledForm, StyledTextField } from '../styles/ComponentsStyles';
 
 interface FiltersProps {
-  onFilter: (transactionId?: string, 
-    name?: string, 
-    cpfCnpj?: string, 
-    startDate?: string, 
+  onFilter: (transactionId?: string,
+    name?: string,
+    cpfCnpj?: string,
+    startDate?: string,
     endDate?: string) => void;
 }
 
@@ -22,14 +22,23 @@ const Filters: React.FC<FiltersProps> = ({ onFilter }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField label="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-      <TextField label="Data de início" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-      <TextField label="Data final" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      <TextField label="Id da transação" value={transactionId} onChange={(e) => setTransactionId(e.target.value)} />
-      <TextField label="CPF / CNPJ" value={cpfCnpj} onChange={(e) => setCpfCnpj(e.target.value)} />
-      <Button type="submit" variant="contained" color="primary">Filtrar</Button>
-    </form>
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledTextField label="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+      <StyledTextField label="Data de início" type="date" value={startDate} slotProps={{
+        inputLabel: {
+          shrink: true,
+        },
+      }}
+        onChange={(e) => setStartDate(e.target.value)} />
+      <StyledTextField label="Data final" type="date" value={endDate} slotProps={{
+        inputLabel: {
+          shrink: true,
+        },
+      }} onChange={(e) => setEndDate(e.target.value)} />
+      <StyledTextField label="Id da transação" value={transactionId} onChange={(e) => setTransactionId(e.target.value)} />
+      <StyledTextField label="CPF / CNPJ" value={cpfCnpj} onChange={(e) => setCpfCnpj(e.target.value)} />
+      <StyledButton type="submit" variant="contained">Filtrar</StyledButton>
+    </StyledForm>
   );
 };
 

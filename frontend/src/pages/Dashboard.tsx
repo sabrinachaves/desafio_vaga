@@ -3,24 +3,25 @@ import TransactionUpload from '../components/TransactionUpload';
 import TransactionTable from '../components/TransactionTable';
 import Filters from '../components/Filters';
 import axios from 'axios';
+import { StyledDashboardDiv } from '../styles/ComponentsStyles';
 
 const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [totalTransactions, setTotalTransactions] = useState(0); 
+  const [totalTransactions, setTotalTransactions] = useState(0);
 
   const fetchTransactions = async (params = {}) => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL_TRANSACTION_API}/v1/transaction`, {
         params: {
           ...params,
-          page: page+1, 
-          pageSize: rowsPerPage, 
+          page: page + 1,
+          pageSize: rowsPerPage,
         },
       });
       setTransactions(response.data.transactions);
-      setTotalTransactions(response.data.total); 
+      setTotalTransactions(response.data.total);
     } catch (error) {
       console.error('Error fetching transactions:', error);
     }
@@ -49,10 +50,14 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div>
+    <div >
       <h1>Dashboard de Transações</h1>
-      <TransactionUpload onFileUpload={handleFileUpload} />
-      <Filters onFilter={handleFilter} />
+      <StyledDashboardDiv>
+        <TransactionUpload onFileUpload={handleFileUpload} />
+      </StyledDashboardDiv>
+      <StyledDashboardDiv>
+        <Filters onFilter={handleFilter} />
+      </StyledDashboardDiv>
       <TransactionTable
         transactions={transactions}
         page={page}
