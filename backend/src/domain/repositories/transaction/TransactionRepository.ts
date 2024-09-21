@@ -7,13 +7,12 @@ export default class TransactionRepository implements ITransactionRepository {
   constructor(private transactionModel: Model<ITransaction>) {}
 
   async create(data: ITransaction[]): Promise<ITransaction[]> {
-    const transactions = await this.transactionModel.create(data);
+    const transactions = await this.transactionModel.insertMany(data);
     return transactions.map((transaction) => transaction.toObject());
   }
 
-  async getById(transactionId: string): Promise<ITransaction | null> {
-    const transaction = await this.transactionModel.findById(transactionId).lean();
-    return transaction;
+  async find(query: any): Promise<ITransaction[]> {
+    return this.transactionModel.find(query).lean();
   }
 
   async listTransactions(

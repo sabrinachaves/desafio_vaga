@@ -8,13 +8,18 @@ export default class CreateUseCase implements ICreateUseCase {
   constructor(private transactionRepository: ITransactionRepository, private customerRepository: ICustomerRepository) {}
 
   public async handle(transactions: ICreateInput[]): Promise<ICreateOutput> {
+    const existingTransactionIds: string[] = [];
     let transactionsToBeCreated: ITransaction[] = [];
     let failedTransactions: ITransaction[] = [];
 
+    const ids = transactions.map((t) => t._id);
+    const existingTransactions = await this.transactionRepository.find({ _id: { $in: ids } });
+    if (existingTransactions.length > 0)
+      existingTransactions.forEach((transaction) => existingTransactionIds.push(transaction._id));
+
     for (const transaction of transactions) {
       try {
-        const transactionResponse = await this.transactionRepository.getById(transaction._id);
-        if (transactionResponse) {
+        if (existingTransactionIds.includes(transaction._id)) {
           console.error('Transaction already exists');
           continue;
         }

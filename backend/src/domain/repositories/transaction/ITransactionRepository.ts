@@ -8,10 +8,10 @@ export interface IListTransactionsOutput {
 
 export default interface ITransactionRepository {
   create(data: ITransaction[]): Promise<ITransaction[]>;
-  getById(transactionId: string): Promise<ITransaction | null>;
   listTransactions(
     filters?: IRetrieveTransactionsQuery,
     page?: number,
     pageSize?: number,
   ): Promise<IListTransactionsOutput>;
+  find(query: any): Promise<ITransaction[]>;
 }
