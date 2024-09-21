@@ -6,8 +6,9 @@ import { IRetrieveTransactionsQuery } from '@useCases/retrieveTransactions/IRetr
 export default class TransactionRepository implements ITransactionRepository {
   constructor(private transactionModel: Model<ITransaction>) {}
 
-  async create(data: ITransaction): Promise<ITransaction> {
-    return (await this.transactionModel.create(data)).toObject();
+  async create(data: ITransaction[]): Promise<ITransaction[]> {
+    const transactions = await this.transactionModel.create(data);
+    return transactions.map((transaction) => transaction.toObject());
   }
 
   async getById(transactionId: string): Promise<ITransaction | null> {

@@ -7,7 +7,7 @@ export interface IListTransactionsOutput {
 }
 
 export default interface ITransactionRepository {
-  create(data: ITransaction): Promise<ITransaction>;
+  create(data: ITransaction[]): Promise<ITransaction[]>;
   getById(transactionId: string): Promise<ITransaction | null>;
   listTransactions(
     filters?: IRetrieveTransactionsQuery,

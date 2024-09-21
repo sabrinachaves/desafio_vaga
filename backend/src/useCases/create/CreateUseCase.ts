@@ -8,7 +8,7 @@ export default class CreateUseCase implements ICreateUseCase {
   constructor(private transactionRepository: ITransactionRepository, private customerRepository: ICustomerRepository) {}
 
   public async handle(transactions: ICreateInput[]): Promise<ICreateOutput> {
-    let createdTransactions: ITransaction[] = [];
+    let transactionsToBeCreated: ITransaction[] = [];
     let failedTransactions: ITransaction[] = [];
 
     for (const transaction of transactions) {
@@ -30,19 +30,19 @@ export default class CreateUseCase implements ICreateUseCase {
               }),
             ];
 
-        const createdTransaction = await this.transactionRepository.create({
+        transactionsToBeCreated.push({
           _id: transaction._id,
           customerId: customers[0]._id!,
           date: new Date(transaction.date),
           value: transaction.value,
         });
-
-        createdTransactions.push(createdTransaction);
       } catch (err) {
         failedTransactions.push(transaction);
         console.log(err);
       }
     }
+
+    const createdTransactions = await this.transactionRepository.create(transactionsToBeCreated);
     return {
       createdTransactions,
       failedTransactions,
